@@ -1,0 +1,127 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/Qt/Tools/CMake_64/share/cmake-3.29/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      The system is: Windows - 10.0.22631 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/Qt/Tools/CMake_64/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "D:/Qt/Tools/CMake_64/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "D:/Qt/Tools/CMake_64/share/cmake-3.29/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: D:/Qt/Tools/mingw810_64/bin/g++.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.exe"
+      
+      The CXX compiler identification is GNU, found in:
+        D:/Southwest Jiaotong University/Third Year/University of Leeds/XJCO2811 User Interfaces/Week 1/Lab/Lab1_Exercise6/build/Desktop_Qt_5_15_17_MinGW_64_bit-RelWithDebInfo/CMakeFiles/3.29.3/CompilerIdCXX/a.exe
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/Qt/Tools/CMake_64/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:67 (try_compile)"
+      - "D:/Qt/Tools/CMake_64/share/cmake-3.29/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "D:/Southwest Jiaotong University/Third Year/University of Leeds/XJCO2811 User Interfaces/Week 1/Lab/Lab1_Exercise6/build/Desktop_Qt_5_15_17_MinGW_64_bit-RelWithDebInfo/CMakeFiles/CMakeScratch/TryCompile-9y08hd"
+      binary: "D:/Southwest Jiaotong University/Third Year/University of Leeds/XJCO2811 User Interfaces/Week 1/Lab/Lab1_Exercise6/build/Desktop_Qt_5_15_17_MinGW_64_bit-RelWithDebInfo/CMakeFiles/CMakeScratch/TryCompile-9y08hd"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Southwest Jiaotong University/Third Year/University of Leeds/XJCO2811 User Interfaces/Week 1/Lab/Lab1_Exercise6/build/Desktop_Qt_5_15_17_MinGW_64_bit-RelWithDebInfo/CMakeFiles/CMakeScratch/TryCompile-9y08hd'
+        
+        Run Build Command(s): D:/Qt/Tools/Ninja/ninja.exe -v cmTC_1b195
+        [1/2] D:\\Qt\\Tools\\mingw810_64\\bin\\g++.exe   -fdiagnostics-color=always   -v -o CMakeFiles/cmTC_1b195.dir/CMakeCXXCompilerABI.cpp.obj -c D:/Qt/Tools/CMake_64/share/cmake-3.29/Modules/CMakeCXXCompilerABI.cpp
+        \x1b[31mFAILED: \x1b[0mCMakeFiles/cmTC_1b195.dir/CMakeCXXCompilerABI.cpp.obj 
+        D:\\Qt\\Tools\\mingw810_64\\bin\\g++.exe   -fdiagnostics-color=always   -v -o CMakeFiles/cmTC_1b195.dir/CMakeCXXCompilerABI.cpp.obj -c D:/Qt/Tools/CMake_64/share/cmake-3.29/Modules/CMakeCXXCompilerABI.cpp
+        Using built-in specs.
+        COLLECT_GCC=D:\\Qt\\Tools\\mingw810_64\\bin\\g++.exe
+        Target: x86_64-w64-mingw32
+        Configured with: ../../../src/gcc-8.1.0/configure --host=x86_64-w64-mingw32 --build=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --prefix=/mingw64 --with-sysroot=/c/mingw810/x86_64-810-posix-seh-rt_v6-rev0/mingw64 --enable-shared --enable-static --disable-multilib --enable-languages=c,c++,fortran,lto --enable-libstdcxx-time=yes --enable-threads=posix --enable-libgomp --enable-libatomic --enable-lto --enable-graphite --enable-checking=release --enable-fully-dynamic-string --enable-version-specific-runtime-libs --disable-libstdcxx-pch --disable-libstdcxx-debug --enable-bootstrap --disable-rpath --disable-win32-registry --disable-nls --disable-werror --disable-symvers --with-gnu-as --with-gnu-ld --with-arch=nocona --with-tune=core2 --with-libiconv --with-system-zlib --with-gmp=/c/mingw810/prerequisites/x86_64-w64-mingw32-static --with-mpfr=/c/mingw810/prerequisites/x86_64-w64-mingw32-static --with-mpc=/c/mingw810/prerequisites/x86_64-w64-mingw32-static --with-isl=/c/mingw810/prerequisites/x86_64-w64-mingw32-static --with-pkgversion='x86_64-posix-seh-rev0, Built by MinGW-W64 project' --with-bugurl=https://sourceforge.net/projects/mingw-w64 CFLAGS='-O2 -pipe -fno-ident -I/c/mingw810/x86_64-810-posix-seh-rt_v6-rev0/mingw64/opt/include -I/c/mingw810/prerequisites/x86_64-zlib-static/include -I/c/mingw810/prerequisites/x86_64-w64-mingw32-static/include' CXXFLAGS='-O2 -pipe -fno-ident -I/c/mingw810/x86_64-810-posix-seh-rt_v6-rev0/mingw64/opt/include -I/c/mingw810/prerequisites/x86_64-zlib-static/include -I/c/mingw810/prerequisites/x86_64-w64-mingw32-static/include' CPPFLAGS=' -I/c/mingw810/x86_64-810-posix-seh-rt_v6-rev0/mingw64/opt/include -I/c/mingw810/prerequisites/x86_64-zlib-static/include -I/c/mingw810/prerequisites/x86_64-w64-mingw32-static/include' LDFLAGS='-pipe -fno-ident -L/c/mingw810/x86_64-810-posix-seh-rt_v6-rev0/mingw64/opt/lib -L/c/mingw810/prerequisites/x86_64-zlib-static/lib -L/c/mingw810/prerequisites/x86_64-w64-mingw32-static/lib '
+        Thread model: posix
+        gcc version 8.1.0 (x86_64-posix-seh-rev0, Built by MinGW-W64 project) 
+        COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-v' '-o' 'CMakeFiles/cmTC_1b195.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=core2' '-march=nocona'
+         D:/Qt/Tools/mingw810_64/bin/../libexec/gcc/x86_64-w64-mingw32/8.1.0/cc1plus.exe -quiet -v -iprefix D:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/ -D_REENTRANT D:/Qt/Tools/CMake_64/share/cmake-3.29/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpbase CMakeCXXCompilerABI.cpp -mtune=core2 -march=nocona -auxbase-strip CMakeFiles/cmTC_1b195.dir/CMakeCXXCompilerABI.cpp.obj -version -fdiagnostics-color=always -o C:\\Users\\arkha\\AppData\\Local\\Temp\\ccfj0oaP.s
+        GNU C++14 (x86_64-posix-seh-rev0, Built by MinGW-W64 project) version 8.1.0 (x86_64-w64-mingw32)
+        	compiled by GNU C version 8.1.0, GMP version 6.1.2, MPFR version 4.0.1, MPC version 1.1.0, isl version isl-0.18-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring duplicate directory "D:/Qt/Tools/mingw810_64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"
+        ignoring duplicate directory "D:/Qt/Tools/mingw810_64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"
+        ignoring duplicate directory "D:/Qt/Tools/mingw810_64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"
+        ignoring duplicate directory "D:/Qt/Tools/mingw810_64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/8.1.0/include"
+        ignoring nonexistent directory "C:/mingw810/x86_64-810-posix-seh-rt_v6-rev0/mingw64C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../include"
+        ignoring duplicate directory "D:/Qt/Tools/mingw810_64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"
+        ignoring duplicate directory "D:/Qt/Tools/mingw810_64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"
+        ignoring nonexistent directory "C:/mingw810/x86_64-810-posix-seh-rt_v6-rev0/mingw64/mingw/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         D:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++
+         D:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32
+         D:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward
+         D:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include
+         D:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed
+         D:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include
+        End of search list.
+        GNU C++14 (x86_64-posix-seh-rev0, Built by MinGW-W64 project) version 8.1.0 (x86_64-w64-mingw32)
+        	compiled by GNU C version 8.1.0, GMP version 6.1.2, MPFR version 4.0.1, MPC version 1.1.0, isl version isl-0.18-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        Compiler executable checksum: 82f0c9785fd37a38ba7b7f8357369a82
+        COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-v' '-o' 'CMakeFiles/cmTC_1b195.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=core2' '-march=nocona'
+         D:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/bin/as.exe -v -o CMakeFiles/cmTC_1b195.dir/CMakeCXXCompilerABI.cpp.obj C:\\Users\\arkha\\AppData\\Local\\Temp\\ccfj0oaP.s\x0d
+        GNU assembler version 2.30 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.30\x0d
+        Assembler messages:\x0d
+        Fatal error: can't create CMakeFiles/cmTC_1b195.dir/CMakeCXXCompilerABI.cpp.obj: No such file or directory\x0d
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/Qt/Tools/CMake_64/share/cmake-3.29/Modules/CMakeTestCXXCompiler.cmake:56 (try_compile)"
+      - "CMakeLists.txt:3 (project)"
+    checks:
+      - "Check for working CXX compiler: D:/Qt/Tools/mingw810_64/bin/g++.exe"
+    directories:
+      source: "D:/Southwest Jiaotong University/Third Year/University of Leeds/XJCO2811 User Interfaces/Week 1/Lab/Lab1_Exercise6/build/Desktop_Qt_5_15_17_MinGW_64_bit-RelWithDebInfo/CMakeFiles/CMakeScratch/TryCompile-10xqpu"
+      binary: "D:/Southwest Jiaotong University/Third Year/University of Leeds/XJCO2811 User Interfaces/Week 1/Lab/Lab1_Exercise6/build/Desktop_Qt_5_15_17_MinGW_64_bit-RelWithDebInfo/CMakeFiles/CMakeScratch/TryCompile-10xqpu"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_CXX_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Southwest Jiaotong University/Third Year/University of Leeds/XJCO2811 User Interfaces/Week 1/Lab/Lab1_Exercise6/build/Desktop_Qt_5_15_17_MinGW_64_bit-RelWithDebInfo/CMakeFiles/CMakeScratch/TryCompile-10xqpu'
+        
+        Run Build Command(s): D:/Qt/Tools/Ninja/ninja.exe -v cmTC_fbdc1
+        [1/2] D:\\Qt\\Tools\\mingw810_64\\bin\\g++.exe   -fdiagnostics-color=always -o CMakeFiles/cmTC_fbdc1.dir/testCXXCompiler.cxx.obj -c "D:/Southwest Jiaotong University/Third Year/University of Leeds/XJCO2811 User Interfaces/Week 1/Lab/Lab1_Exercise6/build/Desktop_Qt_5_15_17_MinGW_64_bit-RelWithDebInfo/CMakeFiles/CMakeScratch/TryCompile-10xqpu/testCXXCompiler.cxx"
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && D:\\Qt\\Tools\\mingw810_64\\bin\\g++.exe   CMakeFiles/cmTC_fbdc1.dir/testCXXCompiler.cxx.obj -o cmTC_fbdc1.exe -Wl,--out-implib,libcmTC_fbdc1.dll.a -Wl,--major-image-version,0,--minor-image-version,0  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 && cd ."
+        
+      exitCode: 0
+...

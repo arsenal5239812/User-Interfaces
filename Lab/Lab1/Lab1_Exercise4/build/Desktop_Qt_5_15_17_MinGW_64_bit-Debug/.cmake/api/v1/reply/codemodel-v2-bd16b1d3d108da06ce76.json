@@ -1,0 +1,61 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-87a18191c988d9d54f92.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Lab1_Exercise4",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Lab1_Exercise4::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Lab1_Exercise4-Debug-d83c3436efc4f7edef79.json",
+					"name" : "Lab1_Exercise4",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "D:/Southwest Jiaotong University/Third Year/University of Leeds/XJCO2811 User Interfaces/Week 1/Lab/Lab1_Exercise4/build/Desktop_Qt_5_15_17_MinGW_64_bit-Debug",
+		"source" : "D:/Southwest Jiaotong University/Third Year/University of Leeds/XJCO2811 User Interfaces/Week 1/Lab/Lab1_Exercise4"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

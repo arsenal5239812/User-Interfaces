@@ -1,0 +1,7 @@
+D:/Southwest Jiaotong University/Third Year/University of Leeds/XJCO2811 User Interfaces/Week 1/Lab/Lab1_Exercise6/build/Desktop_Qt_5_15_17_MinGW_64_bit-Debug/CMakeFiles/Lab1_Exercise6.dir
+D:/Southwest Jiaotong University/Third Year/University of Leeds/XJCO2811 User Interfaces/Week 1/Lab/Lab1_Exercise6/build/Desktop_Qt_5_15_17_MinGW_64_bit-Debug/CMakeFiles/edit_cache.dir
+D:/Southwest Jiaotong University/Third Year/University of Leeds/XJCO2811 User Interfaces/Week 1/Lab/Lab1_Exercise6/build/Desktop_Qt_5_15_17_MinGW_64_bit-Debug/CMakeFiles/rebuild_cache.dir
+D:/Southwest Jiaotong University/Third Year/University of Leeds/XJCO2811 User Interfaces/Week 1/Lab/Lab1_Exercise6/build/Desktop_Qt_5_15_17_MinGW_64_bit-Debug/CMakeFiles/list_install_components.dir
+D:/Southwest Jiaotong University/Third Year/University of Leeds/XJCO2811 User Interfaces/Week 1/Lab/Lab1_Exercise6/build/Desktop_Qt_5_15_17_MinGW_64_bit-Debug/CMakeFiles/install.dir
+D:/Southwest Jiaotong University/Third Year/University of Leeds/XJCO2811 User Interfaces/Week 1/Lab/Lab1_Exercise6/build/Desktop_Qt_5_15_17_MinGW_64_bit-Debug/CMakeFiles/install/local.dir
+D:/Southwest Jiaotong University/Third Year/University of Leeds/XJCO2811 User Interfaces/Week 1/Lab/Lab1_Exercise6/build/Desktop_Qt_5_15_17_MinGW_64_bit-Debug/CMakeFiles/install/strip.dir

@@ -43,9 +43,10 @@ Cave::Cave(int w, int h) : width(w), height(h) // width and height of the cave
 
 Cave::~Cave()
 {
+    // release the Tom object
     delete tom;
 
-    // Delete all dynamically allocated Locations
+    // delete all dynamically allocated Locations
     for (int x = 0; x < width; x++) {
         for (int y = 0; y < height; y++) {
             delete map[x][y]; // delete each Location

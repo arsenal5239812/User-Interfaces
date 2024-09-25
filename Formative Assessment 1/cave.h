@@ -17,6 +17,13 @@ public:
     Cave() = delete;
     Cave(int width, int height);
     ~Cave();
+
+    // copy constructor
+    Cave(const Cave& other);
+
+    // assignment operator
+    Cave& operator=(const Cave& other);
+
     Location*** getMap() {return map;}
     void command (string s);
     void show();

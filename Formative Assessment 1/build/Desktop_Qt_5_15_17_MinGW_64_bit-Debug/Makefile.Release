@@ -154,7 +154,6 @@ release/tom.o: ../../tom.cpp ../../tom.h \
 release/cave.o: ../../cave.cpp ../../cave.h \
 		../../location.h \
 		../../thing.h \
-		../../tom.h \
 		../../rock.h \
 		../../blocks.h \
 		../../move.h \
@@ -174,7 +173,6 @@ release/location.o: ../../location.cpp ../../blocks.h \
 release/main.o: ../../main.cpp ../../cave.h \
 		../../location.h \
 		../../thing.h \
-		../../tom.h \
 		../../test.cpp \
 		../../coin.h \
 		../../mushroom.h
@@ -184,7 +182,6 @@ release/move.o: ../../move.cpp ../../move.h \
 		../../cave.h \
 		../../location.h \
 		../../thing.h \
-		../../tom.h \
 		../../command.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\move.o ..\..\move.cpp
 
@@ -194,7 +191,6 @@ release/place.o: ../../place.cpp ../../place.h \
 		../../command.h \
 		../../cave.h \
 		../../location.h \
-		../../tom.h \
 		../../mushroom.h \
 		../../rock.h \
 		../../blocks.h

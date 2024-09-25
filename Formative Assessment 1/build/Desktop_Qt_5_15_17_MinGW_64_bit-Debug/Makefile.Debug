@@ -154,7 +154,6 @@ debug/tom.o: ../../tom.cpp ../../tom.h \
 debug/cave.o: ../../cave.cpp ../../cave.h \
 		../../location.h \
 		../../thing.h \
-		../../tom.h \
 		../../rock.h \
 		../../blocks.h \
 		../../move.h \
@@ -174,7 +173,6 @@ debug/location.o: ../../location.cpp ../../blocks.h \
 debug/main.o: ../../main.cpp ../../cave.h \
 		../../location.h \
 		../../thing.h \
-		../../tom.h \
 		../../test.cpp \
 		../../coin.h \
 		../../mushroom.h
@@ -184,7 +182,6 @@ debug/move.o: ../../move.cpp ../../move.h \
 		../../cave.h \
 		../../location.h \
 		../../thing.h \
-		../../tom.h \
 		../../command.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\move.o ..\..\move.cpp
 
@@ -194,7 +191,6 @@ debug/place.o: ../../place.cpp ../../place.h \
 		../../command.h \
 		../../cave.h \
 		../../location.h \
-		../../tom.h \
 		../../mushroom.h \
 		../../rock.h \
 		../../blocks.h

@@ -12,7 +12,9 @@ class Tom; // forward reference
 class Cave
 {
 public:
-    Cave(){};
+    // delete default constructor to avoid accidentally
+    // creating invalid caves
+    Cave() = delete;
     Cave(int width, int height);
     ~Cave();
     Location*** getMap() {return map;}

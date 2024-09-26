@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <sstream>
 
 #include "cave.h"
 #include "rock.h"
@@ -127,14 +128,30 @@ Cave::~Cave()
     delete[] map;
 }
 
-void Cave::command (string userCommand)
+void Cave::command(string userCommand)
 {
     if (Move().triggersOn(userCommand))
         Move().fire(*this, userCommand);
     else if (Place().triggersOn(userCommand))
         Place().fire(*this, userCommand);
+    else if (userCommand.rfind("throw", 0) == 0)
+    {
+        istringstream iss(userCommand);
+        string command, object, direction;
+        iss >> command >> object >> direction;
+
+        if (object.empty() || direction.empty())
+        {
+            cerr << "Invalid throw command. Usage: throw <object> <direction>" << endl;
+        } else
+        {
+            throwObject(object, direction);
+        }
+    }
     else
-        cerr << "tom doesn't know how to "+userCommand << endl;;
+    {
+        cerr << "Tom doesn't know how to " + userCommand << endl;
+    }
 }
 
 void Cave::show()
@@ -157,4 +174,53 @@ void Cave::show()
     }
 
     cout << endl;
+}
+
+void Cave::throwObject(string object, string direction)
+{
+    int tomX = tom->getX();
+    int tomY = tom->getY();
+    int targetX = tomX, targetY = tomY;
+
+    if (direction == "north")
+        targetY--;
+    else if (direction == "south")
+        targetY++;
+    else if (direction == "east")
+        targetX++;
+    else if (direction == "west")
+        targetX--;
+    else
+    {
+        cerr << "Unknown direction: " << direction << endl;
+        return;
+    }
+
+    if (targetX < 0 || targetX >= width || targetY < 0 || targetY >= height)
+    {
+        cerr << "Can't throw outside the cave!" << endl;
+        return;
+    }
+
+    if (map[targetX][targetY]->isBlocking())
+    {
+        cerr << "The location is blocked! Can't throw the " << object << " there." << endl;
+        return;
+    }
+
+    Thing* thrownObject = nullptr;
+    if (object == "coin")
+        // assuming Coin is a subclass of Thing
+        thrownObject = new Coin();
+    else if (object == "mushroom")
+        // assuming Mushroom is a subclass of Thing
+        thrownObject = new Mushroom();
+    else
+    {
+        cerr << "Unknown object: " << object << endl;
+        return;
+    }
+
+    map[targetX][targetY]->add(thrownObject);
+    cerr << "Tom throws the " << object << " to the " << direction << "!" << endl;
 }

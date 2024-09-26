@@ -30,6 +30,10 @@ public:
     Tom *getTom() {return tom;}
     int getWidth() {return width;}
     int getHeight() {return height;}
+
+    // add declaration for throwObject function
+    // function to handle throwing objects
+    void throwObject(string object, string direction);
 private:
     int width, height;
     Tom *tom;

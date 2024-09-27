@@ -12,28 +12,15 @@ class Tom; // forward reference
 class Cave
 {
 public:
-    // delete default constructor to avoid accidentally
-    // creating invalid caves
-    Cave() = delete;
+    Cave(){};
     Cave(int width, int height);
     ~Cave();
-
-    // copy constructor
-    Cave(const Cave& other);
-
-    // assignment operator
-    Cave& operator=(const Cave& other);
-
     Location*** getMap() {return map;}
     void command (string s);
     void show();
     Tom *getTom() {return tom;}
     int getWidth() {return width;}
     int getHeight() {return height;}
-
-    // add declaration for throwObject function
-    // function to handle throwing objects
-    void throwObject(string object, string direction);
 private:
     int width, height;
     Tom *tom;

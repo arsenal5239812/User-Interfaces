@@ -13,16 +13,12 @@
 
 using namespace std;
 
-// width and height of the cave
-Cave::Cave(int w, int h) : width(w), height(h)
+Cave::Cave(int w, int h) : width(w), height(h) // width and height of the cave
 {
-    // remove code to check wether cave size is standard(8×8)
 
     if ( width < 5 || height < 5)
         throw new logic_error("cave too small for tom.");
 
-    // dynamically allocate the 2D array of Location
-    // pointers based on the width and height
     map = new Location**[width];
 
     for (int x = 0; x < width; x++)
@@ -33,15 +29,12 @@ Cave::Cave(int w, int h) : width(w), height(h)
             column[y] = new Location();
     }
 
-    // add rocks around the edges
+    // create some rocks
     for (int x = 0; x < width; x++)
-    {
         for (int y = 0; y < height; y++)
-        {
             if ( x == 0 || y == 0 || x == width - 1 || y == height - 1 )
-                map[x][y] -> add( new Rock() );
-        }
-    }
+                 map[x][y] -> add( new Rock() );
+
     tom = new Tom();
     // add tom to the middle of the map
     tom -> setLocation( this, width/2,height/2);
@@ -49,8 +42,15 @@ Cave::Cave(int w, int h) : width(w), height(h)
 
 Cave::~Cave()
 {
-    delete (map[0][0]); // fixme: I don't think this deletes all Locations and arrays declared in the constructor...
-    delete[] map; // fixme: ...neither does this.
+    for (int x = 0; x < width; x++)
+    {
+        for (int y = 0; y < height; y++)
+        {
+            delete map[x][y];
+        }
+        delete [] map[x];
+    }
+    delete [] map;
 }
 
 void Cave::command (string userCommand)

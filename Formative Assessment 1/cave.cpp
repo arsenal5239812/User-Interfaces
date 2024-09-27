@@ -13,30 +13,35 @@
 
 using namespace std;
 
-Cave::Cave(int w, int h) : width(w), height(h) // width and height of the cave
+// width and height of the cave
+Cave::Cave(int w, int h) : width(w), height(h)
 {
-    if (width != 8 || height != 8) // be sure to update Cave::show() if you remove this.
-        throw new logic_error("fixme: Cave needs to be fixed for non-standard sizes.");
+    // remove code to check wether cave size is standard(8×8)
 
     if ( width < 5 || height < 5)
         throw new logic_error("cave too small for tom.");
 
-    map = new Location**[8];
+    // dynamically allocate the 2D array of Location
+    // pointers based on the width and height
+    map = new Location**[width];
 
-    for (int x = 0; x < 8; x++)
+    for (int x = 0; x < width; x++)
     {
-        Location** column = new Location*[8];
+        Location** column = new Location*[height];
         map[x] = column;
-        for (int y = 0; y < 8; y++)
+        for (int y = 0; y < height; y++)
             column[y] = new Location();
     }
 
-    // create some rocks
-    for (int x = 0; x < 8; x++)
-        for (int y = 0; y < 8; y++)
-            if ( x == 0 || y == 0 || x == 7 || y == 7 )
-                 map[x][y] -> add( new Rock() );
-
+    // add rocks around the edges
+    for (int x = 0; x < width; x++)
+    {
+        for (int y = 0; y < height; y++)
+        {
+            if ( x == 0 || y == 0 || x == width - 1 || y == height - 1 )
+                map[x][y] -> add( new Rock() );
+        }
+    }
     tom = new Tom();
     // add tom to the middle of the map
     tom -> setLocation( this, width/2,height/2);

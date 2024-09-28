@@ -53,6 +53,31 @@ Cave::~Cave()
     delete [] map;
 }
 
+Cave::Cave(const Cave &other)
+{
+    copyFrom(other);
+}
+
+Cave& Cave::operator=(const Cave &other)
+{
+    if (this != &other)
+    {
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                delete map[x][y];
+            }
+            delete [] map[x];
+        }
+        delete [] map;
+
+        // copy new object
+        copyFrom(other);
+    }
+    return *this;
+}
+
 void Cave::command (string userCommand)
 {
     if (Move().triggersOn(userCommand))
@@ -67,9 +92,9 @@ void Cave::show()
 {
     vector<Thing*>* thingsWithTom = map[tom -> getX()][tom -> getY()] -> getThings();
 
-    for (int y = 0; y < 8; y++)
+    for (int y = 0; y < height; y++)
     { // for all rows
-        for (int x = 0; x < 8; x++) // for all columns
+        for (int x = 0; x < width; x++) // for all columns
             cout << map[x][y] -> show(); // output whatever we find there
 
         cout << "  "; // list the things at this location
@@ -80,4 +105,46 @@ void Cave::show()
     }
 
     cout << endl;
+}
+
+void Cave::copyFrom(const Cave &other)
+{
+    this->width = other.width;
+    this->height = other.height;
+    this->map = new Location**[this->width];
+
+    for (int x = 0; x < width; x++)
+    {
+        Location** column = new Location*[height];
+        map[x] = column;
+        for (int y = 0; y < height; y++)
+        {
+            column[y] = new Location();
+        }
+    }
+
+    for (int x = 0; x < width; x++)
+        for (int y = 0; y < height; y++)
+        {
+            vector<Thing*>* thingsWit = other.map[x][y] -> getThings();
+            for (int i = 0; i < (int)thingsWit->size(); i++)
+            {
+                string name = (*thingsWit)[i] -> getName();
+                if (name == "mushroom")
+                {
+                    this->map[x][y] -> add(new Mushroom);
+                }
+                else if (name == "rock")
+                {
+                    this->map[x][y] -> add(new Rock);
+                }
+                else if (name == "coin")
+                {
+                    this->map[x][y] -> add(new Coin);
+                }
+            }
+        }
+
+    tom = new Tom(*other.tom);
+    tom->setLocation(this, other.tom->getX(), other.tom->getY());
 }

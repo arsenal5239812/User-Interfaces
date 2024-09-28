@@ -1,9 +1,9 @@
 ******sc22l2g.patch******
 test results
 1. 2
-2. 0
-3. 0
-4. 0
+2. 2
+3. 2
+4. 2
 5. 0
 6. 0
 ~~~~~~blocks.h~~~~~~
@@ -32,26 +32,24 @@ using namespace std;
 
 Cave::Cave(int w, int h) : width(w), height(h) // width and height of the cave
 {
-    if (width != 8 || height != 8) // be sure to update Cave::show() if you remove this.
-        throw new logic_error("fixme: Cave needs to be fixed for non-standard sizes.");
 
     if ( width < 5 || height < 5)
         throw new logic_error("cave too small for tom.");
 
-    map = new Location**[8];
+    map = new Location**[width];
 
-    for (int x = 0; x < 8; x++)
+    for (int x = 0; x < width; x++)
     {
-        Location** column = new Location*[8];
+        Location** column = new Location*[height];
         map[x] = column;
-        for (int y = 0; y < 8; y++)
+        for (int y = 0; y < height; y++)
             column[y] = new Location();
     }
 
     // create some rocks
-    for (int x = 0; x < 8; x++)
-        for (int y = 0; y < 8; y++)
-            if ( x == 0 || y == 0 || x == 7 || y == 7 )
+    for (int x = 0; x < width; x++)
+        for (int y = 0; y < height; y++)
+            if ( x == 0 || y == 0 || x == width - 1 || y == height - 1 )
                  map[x][y] -> add( new Rock() );
 
     tom = new Tom();
@@ -61,8 +59,40 @@ Cave::Cave(int w, int h) : width(w), height(h) // width and height of the cave
 
 Cave::~Cave()
 {
-    delete (map[0][0]); // fixme: I don't think this deletes all Locations and arrays declared in the constructor...
-    delete[] map; // fixme: ...neither does this.
+    for (int x = 0; x < width; x++)
+    {
+        for (int y = 0; y < height; y++)
+        {
+            delete map[x][y];
+        }
+        delete [] map[x];
+    }
+    delete [] map;
+}
+
+Cave::Cave(const Cave &other)
+{
+    copyFrom(other);
+}
+
+Cave& Cave::operator=(const Cave &other)
+{
+    if (this != &other)
+    {
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                delete map[x][y];
+            }
+            delete [] map[x];
+        }
+        delete [] map;
+
+        // copy new object
+        copyFrom(other);
+    }
+    return *this;
 }
 
 void Cave::command (string userCommand)
@@ -79,9 +109,9 @@ void Cave::show()
 {
     vector<Thing*>* thingsWithTom = map[tom -> getX()][tom -> getY()] -> getThings();
 
-    for (int y = 0; y < 8; y++)
+    for (int y = 0; y < height; y++)
     { // for all rows
-        for (int x = 0; x < 8; x++) // for all columns
+        for (int x = 0; x < width; x++) // for all columns
             cout << map[x][y] -> show(); // output whatever we find there
 
         cout << "  "; // list the things at this location
@@ -92,6 +122,48 @@ void Cave::show()
     }
 
     cout << endl;
+}
+
+void Cave::copyFrom(const Cave &other)
+{
+    this->width = other.width;
+    this->height = other.height;
+    this->map = new Location**[this->width];
+
+    for (int x = 0; x < width; x++)
+    {
+        Location** column = new Location*[height];
+        map[x] = column;
+        for (int y = 0; y < height; y++)
+        {
+            column[y] = new Location();
+        }
+    }
+
+    for (int x = 0; x < width; x++)
+        for (int y = 0; y < height; y++)
+        {
+            vector<Thing*>* thingsWit = other.map[x][y] -> getThings();
+            for (int i = 0; i < (int)thingsWit->size(); i++)
+            {
+                string name = (*thingsWit)[i] -> getName();
+                if (name == "mushroom")
+                {
+                    this->map[x][y] -> add(new Mushroom);
+                }
+                else if (name == "rock")
+                {
+                    this->map[x][y] -> add(new Rock);
+                }
+                else if (name == "coin")
+                {
+                    this->map[x][y] -> add(new Coin);
+                }
+            }
+        }
+
+    tom = new Tom(*other.tom);
+    tom->setLocation(this, other.tom->getX(), other.tom->getY());
 }
 ~~~~~~cave.h~~~~~~
 #ifndef CAVE_H
@@ -108,6 +180,11 @@ class Tom; // forward reference
 class Cave
 {
 public:
+    // Copy constructor
+    Cave(const Cave &other);
+    // Copy assignment operator
+    Cave& operator=(const Cave &other);
+
     Cave(){};
     Cave(int width, int height);
     ~Cave();
@@ -118,6 +195,8 @@ public:
     int getWidth() {return width;}
     int getHeight() {return height;}
 private:
+    // Helper function for deep copy
+    void copyFrom(const Cave &other);
     int width, height;
     Tom *tom;
     Location*** map;

@@ -12,6 +12,11 @@ class Tom; // forward reference
 class Cave
 {
 public:
+    // Copy constructor
+    Cave(const Cave &other);
+    // Copy assignment operator
+    Cave& operator=(const Cave &other);
+
     Cave(){};
     Cave(int width, int height);
     ~Cave();
@@ -22,6 +27,8 @@ public:
     int getWidth() {return width;}
     int getHeight() {return height;}
 private:
+    // Helper function for deep copy
+    void copyFrom(const Cave &other);
     int width, height;
     Tom *tom;
     Location*** map;

@@ -10,6 +10,7 @@
 #include "location.h"
 #include "move.h"
 #include "place.h"
+#include "throw.h"
 
 using namespace std;
 
@@ -84,6 +85,8 @@ void Cave::command (string userCommand)
         Move().fire(*this, userCommand);
     else if (Place().triggersOn(userCommand))
         Place().fire(*this, userCommand);
+    else if (Throw().triggersOn(userCommand))
+        Throw().fire(*this, userCommand);
     else
         cerr << "tom doesn't know how to "+userCommand << endl;;
 }

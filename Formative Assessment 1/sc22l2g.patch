@@ -5,7 +5,7 @@ test results
 3. 2
 4. 2
 5. 2
-6. 0
+6. 5
 ~~~~~~blocks.h~~~~~~
 #ifndef BLOCKS_H
 #define BLOCKS_H
@@ -14,6 +14,26 @@ test results
 class Blocks{};
 
 #endif // BLOCKS_H
+~~~~~~bomb.h~~~~~~
+#ifndef BOMB_H
+#define BOMB_H
+
+#include "thing.h"
+#include <string>
+
+// a bomb does not block tom and can be placed
+class Bomb : public Thing
+{
+public:
+    Bomb() {}
+    ~Bomb() {}
+    std::string getName()
+    {
+        return "bomb";
+    }
+};
+
+#endif // BOMB_H
 ~~~~~~cave.cpp~~~~~~
 #include <stdexcept>
 #include <string>
@@ -28,6 +48,8 @@ class Blocks{};
 #include "move.h"
 #include "place.h"
 #include "throw.h"
+#include "bomb.h"
+#include "explode.h"
 
 using namespace std;
 
@@ -104,6 +126,8 @@ void Cave::command (string userCommand)
         Place().fire(*this, userCommand);
     else if (Throw().triggersOn(userCommand))
         Throw().fire(*this, userCommand);
+    else if (userCommand == "explode")
+        Explode().fire(*this, userCommand);
     else
         cerr << "tom doesn't know how to "+userCommand << endl;;
 }
@@ -217,6 +241,7 @@ QT-= gui
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        explode.cpp \
         throw.cpp \
         tom.cpp \
         cave.cpp \
@@ -232,9 +257,11 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     blocks.h \
+    bomb.h \
     cave.h \
     coin.h \
     command.h \
+    explode.h \
     location.h \
     move.h \
     mushroom.h \
@@ -303,6 +330,85 @@ private:
 };
 
 #endif // COMMAND_H
+~~~~~~explode.cpp~~~~~~
+#include "explode.h"
+#include "bomb.h"
+#include "rock.h"
+#include <iostream>
+#include <set>
+
+void Explode::fire(Cave& c, std::string userCommand)
+{
+    int x = c.getTom()->getX();
+    int y = c.getTom()->getY();
+    std::set<std::pair<int, int>> exploded;
+    explodeLocation(c, x, y, exploded);
+}
+
+void Explode::explodeLocation(Cave& c, int x, int y, std::set<std::pair<int, int>>& exploded)
+{
+    // Avoid duplicate explosions
+    if (exploded.find({x, y}) != exploded.end())
+        return;
+
+    Location* loc = c.getMap()[x][y];
+    exploded.insert({x, y});
+
+    // Remove all Things except Tom
+    std::vector<Thing *> *things = loc->getThings();
+    for (auto it = things->begin(); it != things->end();)
+    {
+        if (dynamic_cast<Tom*>(*it) == nullptr)
+        {
+            delete *it;
+            it = things->erase(it);
+        }
+        else
+        {
+            ++it;
+        }
+    }
+
+    // Check for adjacent bombs and explode them
+    int dx[] = {0, 0, -1, 1};
+    int dy[] = {-1, 1, 0, 0};
+    for (int i = 0; i < 4; ++i)
+    {
+        int nx = x + dx[i];
+        int ny = y + dy[i];
+        if (nx >= 0 && ny >= 0 && nx < c.getWidth() && ny < c.getHeight())
+        {
+            Location* adjLoc = c.getMap()[nx][ny];
+            for (Thing* t : *adjLoc->getThings())
+            {
+                if (dynamic_cast<Bomb*>(t) != nullptr)
+                {
+                    explodeLocation(c, nx, ny, exploded);
+                    break;
+                }
+            }
+        }
+    }
+}
+~~~~~~explode.h~~~~~~
+#ifndef EXPLODE_H
+#define EXPLODE_H
+
+#include "command.h"
+#include "cave.h"
+#include <set>
+
+class Explode : public Command
+{
+public:
+    Explode() : Command("explode") {}
+    void fire(Cave& c, std::string userCommand);
+
+private:
+    void explodeLocation(Cave& c, int x, int y, std::set<std::pair<int, int>>& exploded);
+};
+
+#endif // EXPLODE_H
 ~~~~~~location.cpp~~~~~~
 
 #include <algorithm>
@@ -395,6 +501,7 @@ public:
     vector<Thing*>* getThings() { return &things; }
     static int count; // a count of the number of locations allocated/deleted
 
+    void clearThings();
 private:
 
     vector<Thing*> things;
@@ -537,6 +644,7 @@ class Mushroom : public Thing
 #endif // MUSHROOM_H
 ~~~~~~place.cpp~~~~~~
 #include "place.h"
+#include "bomb.h"
 #include "thing.h"
 
 void Place::fire(Cave& c, string userCommand)
@@ -548,6 +656,8 @@ void Place::fire(Cave& c, string userCommand)
         loc ->add(new Coin());
     else if (s.compare("mushroom")==0)
         loc ->add(new Mushroom());
+    else if (s.compare("bomb")==0)
+        loc->add(new Bomb());
     else
         cerr << "I don't know how to place a " << userCommand << endl;
 }
@@ -559,6 +669,7 @@ void Place::fire(Cave& c, string userCommand)
 #include "command.h"
 #include "mushroom.h"
 #include "rock.h"
+#include "bomb.h"
 #include <iostream>
 
 using namespace std;
@@ -613,6 +724,7 @@ public:
 #include "coin.h"
 #include "location.h"
 #include "mushroom.h"
+#include "tom.h"
 
 
 using namespace std;

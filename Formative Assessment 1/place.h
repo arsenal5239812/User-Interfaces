@@ -5,6 +5,7 @@
 #include "command.h"
 #include "mushroom.h"
 #include "rock.h"
+#include "bomb.h"
 #include <iostream>
 
 using namespace std;

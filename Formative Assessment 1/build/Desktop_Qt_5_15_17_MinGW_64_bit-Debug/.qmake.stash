@@ -21,3 +21,4 @@ QMAKE_CXX.LIBDIRS = \
     D:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/lib \
     D:/Qt/Tools/mingw810_64/lib
 QMAKE_LICHECK_TIMESTAMP = "Sat Sep 28"
+QMAKE_LICHECK_TIMESTAMP = "Sun Sep 29"

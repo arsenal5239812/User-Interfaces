@@ -19,6 +19,7 @@
 #include "coin.h"
 #include "location.h"
 #include "mushroom.h"
+#include "tom.h"
 
 
 using namespace std;

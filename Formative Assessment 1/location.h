@@ -26,6 +26,7 @@ public:
     vector<Thing*>* getThings() { return &things; }
     static int count; // a count of the number of locations allocated/deleted
 
+    void clearThings();
 private:
 
     vector<Thing*> things;

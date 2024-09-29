@@ -8,6 +8,7 @@ QT-= gui
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        explode.cpp \
         throw.cpp \
         tom.cpp \
         cave.cpp \
@@ -23,9 +24,11 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     blocks.h \
+    bomb.h \
     cave.h \
     coin.h \
     command.h \
+    explode.h \
     location.h \
     move.h \
     mushroom.h \

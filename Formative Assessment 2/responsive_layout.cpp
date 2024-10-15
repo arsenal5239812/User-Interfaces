@@ -13,36 +13,110 @@ void ResponsiveLayout::setGeometry(const QRect &r /* our layout should always fi
 
     QLayout::setGeometry(r);
 
-    // for all the Widgets added in ResponsiveWindow.cpp
-    for (int i = 0; i < list_.size(); i++) {
+    // get the width of the windows
+    int windowWidth = r.width();
 
-        QLayoutItem *o = list_.at(i);
+    // set layout according to different screen sizes
+    if (windowWidth < 481) {
+        // small screen: using a single column layout
+        for (int i = 0; i < list_.size(); i++) {
+            QLayoutItem *o = list_.at(i);
 
-        try {
-            // cast the widget to one of our responsive labels
-            ResponsiveLabel *label = static_cast<ResponsiveLabel *>(o->widget());
+            try {
+                // convert components into custom ResponsiveLabels
+                ResponsiveLabel *label = static_cast<ResponsiveLabel *>(o->widget());
 
-            if (label == NULL) // null: cast failed on pointer
+                if (label == NULL) {
+                    std::cout << "warning, unknown widget class in layout" << std::endl;
+                }
+                else if (label->text() == kNavTabs) {
+                    // top navigation bar, occupying full width
+                    label->setGeometry(0 + r.x(), 0 + r.y(), r.width(), 40);
+                }
+                else if (label->text() == kSearchButton) {
+                    // the search results are displayed in the middle
+                    label->setGeometry(r.width() - 65 + r.x(), 45 + r.y(), 60, 40);
+                }
+                else if (label->text() == kSearchResult) {
+                    // the search results are displayed in the middle
+                    label->setGeometry(10 + r.x(), 100 + r.y(), r.width() - 20, 60);
+                }
+                else {
+                    // hide unnecessary components
+                    label->setGeometry(-1, -1, 0, 0);;
+                }
+            }
+            catch (const std::bad_cast& e) {
                 std::cout << "warning, unknown widget class in layout" << std::endl;
-            else if (label -> text() == kNavTabs ) // headers go at the top
-                label -> setGeometry(0+r.x(),0+r.y(),r.width(), 40);
-            // only show a search button on small resolution, at the right of the window
-            else if (label -> text() == kSearchButton && r.width() < 500)
-                label -> setGeometry(r.width() - 65+r.x(),45+r.y(),60, 40);
-            // fixme: focus group did not like this behaviour for the search result element.
-            else if (label -> text() == kSearchResult )
-                label -> setGeometry( rand() %(r.width()-120)+r.x(),
-                                     rand() %(r.height()-100)+40+r.y(), 60, 60);
-            else // otherwise: disappear label by moving out of bounds
-                label -> setGeometry (-1,-1,0,0);
-
+            }
         }
-        catch (std::bad_cast) {
-            // bad_case: cast failed on reference...
-            std::cout << "warning, unknown widget class in layout" << std::endl;
+    }
+    else if (windowWidth >= 481 && windowWidth <= 1024) {
+        // medium screen: using dual row layout
+        for (int i = 0; i < list_.size(); i++) {
+            QLayoutItem *o = list_.at(i);
+
+            try {
+                ResponsiveLabel *label = static_cast<ResponsiveLabel *>(o->widget());
+
+                if (label == NULL) {
+                    std::cout << "warning, unknown widget class in layout" << std::endl;
+                }
+                else if (label->text() == kNavTabs) {
+                    // top navigation bar
+                    label->setGeometry(0 + r.x(), 0 + r.y(), r.width(), 40);
+                }
+                else if (label->text() == kSearchButton) {
+                    // the search button is located on the top right side
+                    label->setGeometry(r.width() - 65 + r.x(), 45 + r.y(), 60, 40);
+                }
+                else if (label->text() == kSearchResult) {
+                    // double column layout, with each column
+                    // width being half of the window width
+                    int colWidth = r.width() / 2 - 20;
+                    int rowHeight = 100;
+                    label->setGeometry(10 + r.x(), 100 + r.y(), colWidth, rowHeight);
+                }
+            }
+            catch (const std::bad_cast& e) {
+                std::cout << "warning, unknown widget class in layout" << std::endl;
+            }
+        }
+    }
+    else {
+        // large screen: using a three column layout
+        for (int i = 0; i < list_.size(); i++) {
+            QLayoutItem *o = list_.at(i);
+
+            try {
+                ResponsiveLabel *label = static_cast<ResponsiveLabel *>(o->widget());
+
+                if (label == NULL) {
+                    std::cout << "warning, unknown widget class in layout" << std::endl;
+                }
+                else if (label->text() == kNavTabs) {
+                    // top navigation bar
+                    label->setGeometry(0 + r.x(), 0 + r.y(), r.width(), 40);
+                }
+                else if (label->text() == kSearchButton) {
+                    // the search button is located on the top right side
+                    label->setGeometry(r.width() - 65 + r.x(), 45 + r.y(), 60, 40);
+                }
+                else if (label->text() == kSearchResult) {
+                    // three column layout, with
+                    // each column width being one-third of the window width
+                    int colWidth = r.width() / 3 - 20;
+                    int rowHeight = 100;
+                    label->setGeometry(10 + r.x(), 100 + r.y(), colWidth, rowHeight);
+                }
+            }
+            catch (const std::bad_cast& e) {
+                std::cout << "warning, unknown widget class in layout" << std::endl;
+            }
         }
     }
 }
+
 
 // following methods provide a trivial list-based implementation of the QLayout class
 int ResponsiveLayout::count() const {
